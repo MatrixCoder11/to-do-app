@@ -18,6 +18,15 @@
   <div class="container" style="max-width:600px">
     <h1 class="mt-5 mb-3">📝 My TODO App</h1>
 
+
+    <div id="loader" class="d-none text-center my-2">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Завантаження…</span>
+      </div>
+      <span class="ms-2 text-muted">Завантаження…</span>
+    </div>
+    <div id="error-box" class="alert alert-danger d-none" role="alert"></div>
+
     <div class="mb-3 d-flex gap-3">
       <span class="badge bg-secondary fs-6">
         Всього: <span id="item-count">0</span>
