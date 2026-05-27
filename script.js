@@ -1,14 +1,14 @@
-// ───── Стан програми ─────
+
+const list = document.getElementById('todo-list')
+const itemCountSpan = document.getElementById('item-count')
+const uncheckedCountSpan = document.getElementById('unchecked-count')
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
 
-// ───── Допоміжні функції ─────
 
-/** Зберегти масив у LocalStorage */
 function save() {
   localStorage.setItem('todos', JSON.stringify(todos));
 }
 
-/** Рендер одного todo → рядок HTML */
 function renderTodo(todo) {
   const checkedAttr = todo.done ? 'checked' : '';
   const textClass   = todo.done
@@ -33,19 +33,17 @@ function renderTodo(todo) {
     </li>`;
 }
 
-/** Відрендерити весь список */
 function render() {
   list.innerHTML = todos.map(renderTodo).join('');
   updateCounter();
 }
 
-/** Оновити лічильники */
+
 function updateCounter() {
   itemCountSpan.textContent    = todos.length;
   uncheckedCountSpan.textContent = todos.filter(t => !t.done).length;
 }
 
-/** Додати нову справу */
 function newTodo() {
   const text = prompt('Введіть нову справу:');
   if (!text || !text.trim()) return;
@@ -60,14 +58,14 @@ function newTodo() {
   render();
 }
 
-/** Видалити справу за id */
+
 function deleteTodo(id) {
   todos = todos.filter(t => t.id !== id);
   save();
   render();
 }
 
-/** Перемикнути статус done */
+
 function checkTodo(id) {
   const todo = todos.find(t => t.id === id);
   if (todo) todo.done = !todo.done;
@@ -75,5 +73,5 @@ function checkTodo(id) {
   render();
 }
 
-// ───── Ініціалізація ─────
+
 render();
